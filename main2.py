@@ -76,4 +76,3 @@ create_csv_file_upadate_IRA_IRD('IRA_update.csv',IRA_POS_REEV,IRA_POS_Retail)
 
 create_csv_file_upadate_IRA_IRD('IRD_update.csv',IRD_POS_REEV,IRD_POS_Retail)
 
-LICENSE GNU General Public License
