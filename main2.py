@@ -1,12 +1,3 @@
-"""
-MIT License
-
-Copyright (c) 2026 Xpresscat
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files...
-"""
-
 from procedures import (
     read_masterfile, read_data_IRA_IRD, read_POS, read_users, read_pos_users, update_masterfile,
     update_data, create_IRA_IRD_POS_REEV, create_IRA_IRD_POS_Retail, create_csv_file_upadate_IRA_IRD)

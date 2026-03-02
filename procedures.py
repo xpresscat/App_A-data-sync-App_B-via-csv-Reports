@@ -1,12 +1,3 @@
-"""
-MIT License
-
-Copyright (c) 2026 Xpresscat
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files...
-"""
-
 import pandas as pd
 
 def read_masterfile(file_path, encoding='latin-1', territory_prefix='IRA_', status='Active'):
@@ -25,11 +16,11 @@ def read_masterfile(file_path, encoding='latin-1', territory_prefix='IRA_', stat
     """
     
     # Read the CSV file with the appropriate encoding and selected columns
-    df = pd.read_csv(file_path, usecols=['territorio', 'Username', 'E-mail', 'Status'], encoding=encoding)
+    df = pd.read_csv(file_path, usecols=['Territory', 'Username', 'E-mail', 'Status'], encoding=encoding)
 
     # Filter data where 'territorio' starts with `territory_prefix` and 'Status' equals `status`
     df_filtered = df[
-    df['territorio'].str.contains(f'^{territory_prefix}', case=False, na=False) &
+    df['Territory'].str.contains(f'^{territory_prefix}', case=False, na=False) &
     df['Status'].str.contains(f'^{status}$', case=False, na=False)
     ]
 
@@ -53,16 +44,18 @@ def read_data_IRA_IRD(file_path, encoding='latin-1', territory_prefix='IRA_',fie
 
     return data  
     
-def read_POS(file_path, encoding='latin-1'):
+def read_POS(file_path, encoding='latin-1',active='Sim'):
     
     # Read the CSV file with the appropriate encoding and selected columns
-    df = pd.read_csv(file_path, usecols=['ISMS Code', 'Reev ID'], encoding=encoding)
+    df = pd.read_csv(file_path, usecols=['ISMS Code', 'Active', 'Reev ID'], encoding=encoding)
 
     # Filter data where 'territorio' starts with `territory_prefix` and 'Status' equals `status`
-    
+    df_filtered = df[
+    df['Active'].str.contains(f'^{active}$', case=False, na=False)
+    ]
 
     # Convert to list of dictionaries
-    data = df.to_dict(orient='records')
+    data = df_filtered.to_dict(orient='records')
 
     return data
 
@@ -165,8 +158,8 @@ def create_IRA_IRD_POS_REEV(masterfile, data, field = 'TERRITORY_ACTIVATOR' ):
 
             territorio = str(dat[field]).lower()
 
-            if str(record['territorio']).lower() in territorio:
-                
+            if str(record['Territory']).lower() in territorio:
+
                 ira_entry = {}  # create a new dictionary for each match
                 ira_entry['email'] = record['E-mail']
                 ira_entry['isms'] = dat['Account Commercial UUID']
