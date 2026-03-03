@@ -1,3 +1,13 @@
+"""
+MIT License
+
+Copyright (c) 2026 Xpresscat
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files...
+"""
+
+
 import pandas as pd
 
 def read_masterfile(file_path, encoding='latin-1', territory_prefix='IRA_', status='Active'):
@@ -85,7 +95,7 @@ def read_pos_users(file_path, encoding='latin-1'):
 
     return data
 
-def update_masterfile(masterfile, users):
+def update_masterfile(masterfile, users, domain_add = '@sample.net'):
     """
     Compares records from masterfile_IRA with users and updates the 'Username' and 'E-mail' fields
     based on the following rules:
@@ -103,7 +113,6 @@ def update_masterfile(masterfile, users):
     # Loop through all records in masterfile_IRA
     for record in masterfile[:]:
 
-        domain_add = "@sample.net"
 
         # Get concatenated email for comparison (Username + domain_add)
         concatenated_email = str(record['Username']) + domain_add
