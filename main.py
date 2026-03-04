@@ -17,15 +17,23 @@ masterfile_IRA = read_masterfile('file.csv',territory_prefix='IRA_', status='Act
 print(masterfile_IRA)
 input("Press Enter to continue...masterfile_IRA")
 
+masterfile_DSA = read_masterfile('file.csv',territory_prefix='DSA_', status='Active')
+print(masterfile_DSA)
+input("Press Enter to continue...masterfile_DSA")
+
 masterfile_IRD = read_masterfile('file.csv',territory_prefix='IRD_', status='Active')
 print(masterfile_IRD)
 input("Press Enter to continue...masterfile_IRD")
 
-data_IRA = read_data_IRA_IRD('file2.csv',territory_prefix='IRA',field ='TERRITORY_ACTIVATOR')
+data_IRA = read_data_IRA_IRD('file2.csv',territory_prefix='IRA_',field ='TERRITORY_ACTIVATOR')
 print(data_IRA)
 input("Press Enter to continue...data_IRA")
 
-data_IRD = read_data_IRA_IRD('file2.csv',territory_prefix='IRD',field ='TERRITORY')
+data_DSA = read_data_IRA_IRD('file2.csv',territory_prefix='DSA_',field ='TERRITORY_ACTIVATOR')
+print(data_DSA)
+input("Press Enter to continue...data_DSA")
+
+data_IRD = read_data_IRA_IRD('file2.csv',territory_prefix='IRD_',field ='TERRITORY')
 print(data_IRD)
 input("Press Enter to continue...data_IRD")
 
@@ -46,6 +54,10 @@ masterfile_IRA_checked = update_masterfile(masterfile_IRA,users,domain_add = dom
 print(masterfile_IRA_checked)
 input("Press Enter to continue...masterfile_IRA_checked")
 
+masterfile_DSA_checked = update_masterfile(masterfile_DSA,users,domain_add = domain)
+print(masterfile_DSA_checked)
+input("Press Enter to continue...masterfile_DSA_checked")
+
 masterfile_IRD_checked = update_masterfile(masterfile_IRD,users,domain_add = domain)
 print(masterfile_IRD_checked)
 input("Press Enter to continue...masterfile_IRD_checked")
@@ -53,6 +65,10 @@ input("Press Enter to continue...masterfile_IRD_checked")
 data_IRA_checked = update_data(data_IRA,POS)
 print(data_IRA_checked)
 input("Press Enter to continue...data_IRA_checked")
+
+data_DSA_checked = update_data(data_DSA,POS)
+print(data_DSA_checked)
+input("Press Enter to continue...data_DSA_checked")
 
 data_IRD_checked = update_data(data_IRD,POS)
 print(data_IRD_checked)
@@ -66,6 +82,14 @@ IRA_POS_Retail = create_IRA_IRD_POS_Retail(masterfile_IRA_checked,pos_users)
 print(IRA_POS_REEV)
 input("Press Enter to continue...IRA_POS_Retail")
 
+DSA_POS_REEV = create_IRA_IRD_POS_REEV(masterfile_DSA_checked,data_DSA_checked,field = 'TERRITORY_ACTIVATOR')
+print(DSA_POS_REEV)
+input("Press Enter to continue...DSA_POS_REEV")
+
+DSA_POS_Retail = create_IRA_IRD_POS_Retail(masterfile_DSA_checked,pos_users)
+print(DSA_POS_REEV)
+input("Press Enter to continue...DSA_POS_Retail")
+
 IRD_POS_REEV = create_IRA_IRD_POS_REEV(masterfile_IRD_checked,data_IRD_checked,field = 'TERRITORY')
 print(IRD_POS_REEV)
 input("Press Enter to continue...IRD_POS_REEV")
@@ -75,6 +99,8 @@ print(IRD_POS_REEV)
 input("Press Enter to continue...IRD_POS_Retail")
 
 create_csv_file_upadate_IRA_IRD('IRA_update.csv',IRA_POS_REEV,IRA_POS_Retail)
+
+create_csv_file_upadate_IRA_IRD('DSA_update.csv',DSA_POS_REEV,DSA_POS_Retail)
 
 create_csv_file_upadate_IRA_IRD('IRD_update.csv',IRD_POS_REEV,IRD_POS_Retail)
 

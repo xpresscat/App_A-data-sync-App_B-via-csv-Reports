@@ -46,7 +46,7 @@ def read_data_IRA_IRD(file_path, encoding='latin-1', territory_prefix='IRA_',fie
 
     # Filter data where 'territorio' starts with `territory_prefix` and 'Status' equals `status`
     df_filtered = df[
-    df[field].str.contains(f'^{territory_prefix}', case=False, na=False)
+    df[field].str.contains(territory_prefix, case=False, na=False)
     ]
 
     # Convert to list of dictionaries
