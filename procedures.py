@@ -262,8 +262,7 @@ def create_csv_file_upadate_IRA_IRD(file_path,IRX_POS_REEV, IRX_POS_Retail):
     df = pd.DataFrame(CSV_file)
 
     # Export to CSV
-    df.to_csv(file_path, index=False)
-    input("Press Enter to continue...CSV_file")      
+    df.to_csv(file_path, index=False)    
 
                     
                 

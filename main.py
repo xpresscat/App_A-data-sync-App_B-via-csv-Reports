@@ -99,8 +99,11 @@ print(IRD_POS_REEV)
 input("Press Enter to continue...IRD_POS_Retail")
 
 create_csv_file_upadate_IRA_IRD('IRA_update.csv',IRA_POS_REEV,IRA_POS_Retail)
+input("Press Enter to continue...IRA_update.csv") 
 
 create_csv_file_upadate_IRA_IRD('DSA_update.csv',DSA_POS_REEV,DSA_POS_Retail)
+input("Press Enter to continue...DSA_update.csv") 
 
 create_csv_file_upadate_IRA_IRD('IRD_update.csv',IRD_POS_REEV,IRD_POS_Retail)
+input("Press Enter to continue...IRD_update.csv") 
 
